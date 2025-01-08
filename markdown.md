@@ -70,7 +70,7 @@ Beberapa algoritma pembelajaran mesin akan diterapkan untuk memprediksi risiko k
 ### **1. Informasi tentang Data**
 
 #### **Jumlah Data**
-Dataset terdiri dari **1.014 baris (observasi)** dan **6 kolom (fitur)**, termasuk label target, yaitu *Risk Level*.  
+Dataset terdiri dari **1.014 baris (observasi data IoT)** dan **6 kolom (feature)**, termasuk label target, yaitu *Risk Level*.  
 
 #### **Kondisi Data**
 - **Tidak ada data kosong (missing values):** Dataset bersih dari nilai yang hilang.  
