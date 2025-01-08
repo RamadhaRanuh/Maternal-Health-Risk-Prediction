@@ -17,9 +17,9 @@ Proyek "Maternal Health Risk Data Set" bertujuan untuk memanfaatkan data yang di
 
   Referensi:
 
-    [Trends in maternal mortality 2000 to 2017](https://www.unfpa.org/sites/default/files/pub-pdf/Maternal_mortality_report.pdf)
-    [Hypertensive disorders in pregnancy: prevalence, risk factors, and outcomes](https://doi.org/10.1016/j.preghy.2021.02.005)
-    [Gestational Diabetes Mellitus: Risk Factors and Management Approaches](10.1038/nrendo.2012.96.)
+  [Trends in maternal mortality 2000 to 2017](https://www.unfpa.org/sites/default/files/pub-pdf/Maternal_mortality_report.pdf)
+  [Hypertensive disorders in pregnancy: prevalence, risk factors, and outcomes](https://doi.org/10.1016/j.preghy.2021.02.005)
+  [Gestational Diabetes Mellitus: Risk Factors and Management Approaches](10.1038/nrendo.2012.96.)
 
 ## Business Understanding
 
