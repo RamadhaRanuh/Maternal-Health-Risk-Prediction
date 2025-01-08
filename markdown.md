@@ -38,7 +38,7 @@ Proyek "Maternal Health Risk Data Set" bertujuan untuk memanfaatkan data yang di
 ### **Rubrik/Kriteria Tambahan**:
 ### Solution Statements
 Untuk mencapai tujuan di atas, berikut adalah solusi yang diajukan:
-1. Eksperimen dengan Beberapa Algoritma
+#### 1. Eksperimen dengan Beberapa Algoritma
 
 Beberapa algoritma pembelajaran mesin akan diterapkan untuk memprediksi risiko kesehatan maternal:
 - K-Nearest Neighbors (KNN): Algoritma berbasis tetangga terdekat yang sederhana namun efektif untuk masalah klasifikasi.
@@ -46,7 +46,7 @@ Beberapa algoritma pembelajaran mesin akan diterapkan untuk memprediksi risiko k
 - Random Forest: Algoritma berbasis ensemble yang dapat menangani data dengan non-linearitas dan fitur yang saling berinteraksi.
 - XGBoost: Algoritma boosting yang terkenal dengan performa tinggi pada berbagai masalah klasifikasi.
 
-2. Peningkatan Model dengan Hyperparameter Tuning
+#### 2. Peningkatan Model dengan Hyperparameter Tuning
 - Menggunakan GridSearchCV untuk mencari kombinasi parameter terbaik bagi setiap algoritma.
 - Contoh parameter yang akan disesuaikan:
 - Untuk KNN: jumlah tetangga (n_neighbors).
@@ -54,14 +54,14 @@ Beberapa algoritma pembelajaran mesin akan diterapkan untuk memprediksi risiko k
 - Untuk Random Forest: jumlah pohon (n_estimators) dan kedalaman maksimum pohon (max_depth).
 - Untuk XGBoost: learning rate, jumlah estimasi (n_estimators), dan kedalaman pohon (max_depth).
 
-3. Evaluasi dengan Metrik yang Terukur. Metrik evaluasi yang digunakan:
+#### 3. Evaluasi dengan Metrik yang Terukur. Metrik evaluasi yang digunakan:
 - Accuracy: Mengukur persentase prediksi yang benar.
 - Precision: Mengukur akurasi prediksi kelas positif.
 - Recall: Mengukur sensitivitas atau kemampuan model mendeteksi kelas positif.
 - F1-score: Rata-rata harmonik antara precision dan recall.
 - AUC-ROC: Mengukur kemampuan model dalam membedakan kelas.
 
-4. Analisis dan Perbandingan Hasil
+#### 4. Analisis dan Perbandingan Hasil
 - Membandingkan hasil dari masing-masing algoritma berdasarkan metrik evaluasi.
 - Memilih algoritma dengan performa terbaik untuk implementasi lebih lanjut.
 
