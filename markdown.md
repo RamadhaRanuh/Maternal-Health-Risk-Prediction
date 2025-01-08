@@ -35,7 +35,7 @@ Proyek "Maternal Health Risk Data Set" bertujuan untuk memanfaatkan data yang di
 - Menggunakan data dari sistem pemantauan berbasis IoT untuk mendukung pengambilan keputusan medis secara lebih cepat dan akurat.
 - Membandingkan performa beberapa algoritma pembelajaran mesin untuk menentukan pendekatan terbaik dalam memprediksi risiko maternal.
 
-
+### **Rubrik/Kriteria Tambahan**:
 ### Solution Statements
 Untuk mencapai tujuan di atas, berikut adalah solusi yang diajukan:
 1. Eksperimen dengan Beberapa Algoritma
