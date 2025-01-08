@@ -158,9 +158,6 @@ Data preparation adalah tahap penting sebelum pemodelan karena memastikan data b
    - Normalisasi variabel numerik menggunakan *MinMaxScaler*.
 5. **Pemisahan Data (Train-Test Split)**
    - Membagi dataset menjadi set pelatihan (80%) dan set pengujian (20%).
-6. **Oversampling Data Tidak Seimbang**
-   - Menggunakan metode SMOTE (*Synthetic Minority Oversampling Technique*).
-7. **Pemeriksaan Keseimbangan Data Setelah Oversampling**
 
 ---
 
