@@ -352,7 +352,7 @@ Data preparation adalah tahap penting sebelum pemodelan karena memastikan data b
    - Model SVC memiliki AUC yang sama dengan KNN, yaitu 0.77. Ini menunjukkan bahwa SVC dan KNN memiliki kemampuan diskriminasi yang serupa dalam memisahkan kelas.
 
 3. **Random Forest**
-   - Akurasi tertinggi: **73%**.
+   - Akurasi tertinggi: **71%**.
    - Precision, Recall, dan F1-Score menunjukkan kinerja konsisten pada semua kategori, dengan perbaikan signifikan pada kategori `Risk Level` 1 dibandingkan dengan model lain.
    - Model Random Forest memiliki AUC tertinggi (0.81), menunjukkan performa terbaik dibandingkan dengan KNN dan SVC. Random Forest lebih andal dalam membedakan antara kelas positif dan negatif, menjadikannya model yang lebih cocok untuk masalah ini.
 
