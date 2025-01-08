@@ -13,7 +13,7 @@ Komplikasi seperti preeklamsia, hipertensi gestasional, dan diabetes gestasional
 
 Pemantauan indikator kesehatan seperti tekanan darah, kadar glukosa darah, detak jantung, dan usia ibu merupakan langkah penting untuk mendeteksi dini risiko kesehatan maternal. Di sinilah teknologi Internet of Things (IoT) memberikan solusi inovatif. Melalui sistem pemantauan berbasis IoT, data dapat dikumpulkan secara real-time dari rumah sakit, klinik komunitas, atau layanan kesehatan maternal. Data ini, jika dianalisis menggunakan teknik pembelajaran mesin, dapat memberikan prediksi akurat mengenai tingkat risiko yang dihadapi ibu hamil.
 
-Proyek "Maternal Health Riskt" bertujuan untuk memanfaatkan data yang dikumpulkan melalui IoT untuk memprediksi intensitas risiko selama kehamilan. Dengan demikian, proyek ini menawarkan pendekatan berbasis data untuk mengurangi angka kematian maternal dan neonatal dengan menyediakan peringatan dini kepada penyedia layanan kesehatan dan ibu hamil.
+Proyek "Maternal Health Risk" bertujuan untuk memanfaatkan data yang dikumpulkan melalui IoT untuk memprediksi intensitas risiko selama kehamilan. Dengan demikian, proyek ini menawarkan pendekatan berbasis data untuk mengurangi angka kematian maternal dan neonatal dengan menyediakan peringatan dini kepada penyedia layanan kesehatan dan ibu hamil.
 
   Referensi:
 
