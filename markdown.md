@@ -13,7 +13,7 @@ Komplikasi seperti preeklamsia, hipertensi gestasional, dan diabetes gestasional
 
 Pemantauan indikator kesehatan seperti tekanan darah, kadar glukosa darah, detak jantung, dan usia ibu merupakan langkah penting untuk mendeteksi dini risiko kesehatan maternal. Di sinilah teknologi Internet of Things (IoT) memberikan solusi inovatif. Melalui sistem pemantauan berbasis IoT, data dapat dikumpulkan secara real-time dari rumah sakit, klinik komunitas, atau layanan kesehatan maternal. Data ini, jika dianalisis menggunakan teknik pembelajaran mesin, dapat memberikan prediksi akurat mengenai tingkat risiko yang dihadapi ibu hamil.
 
-Proyek "Maternal Health Risk Data Set" bertujuan untuk memanfaatkan data yang dikumpulkan melalui IoT untuk memprediksi intensitas risiko selama kehamilan. Dengan demikian, proyek ini menawarkan pendekatan berbasis data untuk mengurangi angka kematian maternal dan neonatal dengan menyediakan peringatan dini kepada penyedia layanan kesehatan dan ibu hamil.
+Proyek "Maternal Health Riskt" bertujuan untuk memanfaatkan data yang dikumpulkan melalui IoT untuk memprediksi intensitas risiko selama kehamilan. Dengan demikian, proyek ini menawarkan pendekatan berbasis data untuk mengurangi angka kematian maternal dan neonatal dengan menyediakan peringatan dini kepada penyedia layanan kesehatan dan ibu hamil.
 
   Referensi:
 
@@ -32,8 +32,8 @@ Proyek "Maternal Health Risk Data Set" bertujuan untuk memanfaatkan data yang di
 ### Goals 
 
 - Membangun model prediksi yang akurat untuk menentukan tingkat risiko kesehatan maternal berdasarkan data kesehatan (usia, tekanan darah, kadar glukosa, detak jantung).
-- Menggunakan data dari sistem pemantauan berbasis IoT untuk mendukung pengambilan keputusan medis secara lebih cepat dan akurat.
-- Membandingkan performa beberapa algoritma pembelajaran mesin untuk menentukan pendekatan terbaik dalam memprediksi risiko maternal.
+- Menggunakan data dari sistem pemantauan berbasis IoT untuk mendukung decision making medis secara lebih cepat dan akurat.
+- Membandingkan performa beberapa algoritma machine learning untuk menentukan pendekatan terbaik dalam memprediksi risiko maternal.
 
 ### **Rubrik/Kriteria Tambahan**:
 ### Solution Statements
@@ -44,7 +44,6 @@ Beberapa algoritma pembelajaran mesin akan diterapkan untuk memprediksi risiko k
 - K-Nearest Neighbors (KNN): Algoritma berbasis tetangga terdekat yang sederhana namun efektif untuk masalah klasifikasi.
 - Support Vector Machine (SVM): Algoritma yang mampu memisahkan kelas dengan margin optimal, cocok untuk data dengan fitur kompleks.
 - Random Forest: Algoritma berbasis ensemble yang dapat menangani data dengan non-linearitas dan fitur yang saling berinteraksi.
-- XGBoost: Algoritma boosting yang terkenal dengan performa tinggi pada berbagai masalah klasifikasi.
 
 #### 2. Peningkatan Model dengan Hyperparameter Tuning
 - Menggunakan GridSearchCV untuk mencari kombinasi parameter terbaik bagi setiap algoritma.
@@ -52,7 +51,6 @@ Beberapa algoritma pembelajaran mesin akan diterapkan untuk memprediksi risiko k
 - Untuk KNN: jumlah tetangga (n_neighbors).
 - Untuk SVM: kernel (linear, rbf) dan parameter regulasi (C).
 - Untuk Random Forest: jumlah pohon (n_estimators) dan kedalaman maksimum pohon (max_depth).
-- Untuk XGBoost: learning rate, jumlah estimasi (n_estimators), dan kedalaman pohon (max_depth).
 
 #### 3. Evaluasi dengan Metrik yang Terukur. Metrik evaluasi yang digunakan:
 - Accuracy: Mengukur persentase prediksi yang benar.
@@ -119,13 +117,13 @@ Dataset terdiri dari **1.014 baris (observasi)** dan **6 kolom (fitur)**, termas
 
 #### **Hubungan antar Variabel**
 - Korelasi Pearson untuk variabel numerik:
-  - Tekanan darah sistolik dan diastolik memiliki korelasi positif tinggi (r = 0.67).
+  - Tekanan darah sistolik dan diastolik memiliki korelasi positif tinggi (r = 0.79).
   - Kadar glukosa darah tidak berkorelasi signifikan dengan usia atau detak jantung.
 - Visualisasi **Heatmap** untuk melihat korelasi antar fitur.
 
 #### **Analisis Risiko Berdasarkan Fitur**
 - **Box Plot**: Membandingkan distribusi fitur untuk setiap kategori *Risk Level*.  
-  - **High Risk:** Lebih sering terjadi pada kadar glukosa darah (*BS*) > 8 mmol/L dan tekanan darah sistolik > 140 mmHg.  
+  - **High Risk:** Lebih sering terjadi pada kadar glukosa darah (*BS*) > 8 mmol/L dan tekanan darah sistolik > 120 mmHg.  
   - **Low Risk:** Umumnya terkait dengan tekanan darah normal dan kadar glukosa rendah.  
 
 #### **Outlier Detection**
@@ -169,14 +167,13 @@ Data preparation adalah tahap penting sebelum pemodelan karena memastikan data b
 ### **2. Penjelasan Proses Data Preparation**
 
 #### **Step 1: Import Library dan Dataset**
-- **Tujuan:** Mengimpor pustaka seperti `pandas`, `numpy`, `sklearn`, dan `matplotlib` untuk analisis data dan visualisasi, serta `imblearn` untuk teknik oversampling.
+- **Tujuan:** Mengimpor pustaka seperti `pandas`, `numpy`, `sklearn`, dan `matplotlib` untuk analisis data dan visualisasi.
 - **Kode:**
   ```python
   import pandas as pd
   import numpy as np
-  from sklearn.preprocessing import LabelEncoder, MinMaxScaler
+  from sklearn.preprocessing import LabelEncoder, StandardScaler
   from sklearn.model_selection import train_test_split
-  from imblearn.over_sampling import SMOTE
   ```
 
 
@@ -200,24 +197,10 @@ Data preparation adalah tahap penting sebelum pemodelan karena memastikan data b
 
 - **Kode:**
   ```python
-  le = LabelEncoder()
-  data['RiskLevel'] = le.fit_transform(data['RiskLevel'])
+  data.replace({"high risk": 2, "low risk": 0, "mid risk": 1}, inplace=True)
   ```
 
-#### **Step 4: Normalisasi Data**
-
-- **Teknik:** Menggunakan *MinMaxScaler* untuk menormalkan variabel numerik (`Age`, `SystolicBP`, `DiastolicBP`, `BS`, `HeartRate`)
-
-- **Alasan:** Normalisasi ini membantu mengurangi skala feature yang berbeda agar model dapat belajar secara optimal, khususnya algoritma berbasis jarak seperti KNN.
-
-- **Kode:**
-  ```python
-  scaler = MinMaxScaler()
-  features = ['Age', 'SystolicBP', 'DiastolicBP', 'BS', 'HeartRate']
-  data[features] = scaler.fit_transform(data[features])
-  ```
-
-#### **Step 5: Train Test Split**
+#### **Step 4: Train Test Split**
 
 - **Teknik:** Membagi dataset menjadi 80% data train dan 20% data test
 
@@ -230,23 +213,17 @@ Data preparation adalah tahap penting sebelum pemodelan karena memastikan data b
   X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
   ```
 
-#### **Step 6: Oversampling Data Tidak Seimbang**
-- **Teknik:** Menggunakan SMOTE (Synthetic Minority Oversampling Technique). 
+#### **Step 5: Normalisasi Data**
 
-- **Alasan:** Dataset awal tidak seimbang pada variabel target (`low`, `mid`, `high`). SMOTE menghasilkan data sintesis untuk kelas minoritas, meningkatkan performa model.
+- **Teknik:** Menggunakan *MinMaxScaler* untuk menormalkan variabel numerik (`Age`, `SystolicBP`, `DiastolicBP`, `BS`, `HeartRate`)
 
-- **Kode:**
-  ```python
-  smote = SMOTE(random_state=42)
-  X_train_smote, y_train_smote = smote.fit_resample(X_train, y_train)
-  ```
-
-#### **Step 7: Pemeriksaan Keseimbangan Data Setelah Oversampling**
-- **Teknik:** Memastikan distribusi kelas setelah oversampling seimbang.
+- **Alasan:** Normalisasi ini membantu mengurangi skala feature yang berbeda agar model dapat belajar secara optimal, khususnya algoritma berbasis jarak seperti KNN.
 
 - **Kode:**
   ```python
-  print(y_train_smote.value_counts())
+  scaler = StandardScaler()
+  scaler.fit(X) # Fit data
+  X_scaled = scaler.transform(X)
   ```
 
 ### 3. Aalsan Diperlukan Tahapan Data Preparation
@@ -255,7 +232,6 @@ Data preparation adalah tahap penting sebelum pemodelan karena memastikan data b
 2. **Transformasi Data:** Variabel target perlu diubah menjadi format yang dapat diterima oleh model.
 3. **Normalisasi:** Mengatasi perbedaan skala fitur agar model lebih stabil dan akurat.
 4. **Train-Test Split:** Memisahkan data untuk evaluasi yang tidak bias.
-5. **Oversampling:** Mengatasi masalah ketidakseimbangan data agar model tidak bias terhadap kelas mayoritas.
 
 ## Modeling
 
@@ -307,7 +283,7 @@ Data preparation adalah tahap penting sebelum pemodelan karena memastikan data b
   - Parameter terbaik: `{'criterion': 'entropy', 'max_depth': 30, 'min_samples_leaf': 5, 'n_estimators': 500}`
   - Akurasi terbaik: 70.6%.
 - **Hasil Akhir:**
-  - Akurasi: 73%.
+  - Akurasi: 71%.
   - Precision dan Recall kategori `Risk Level` 0 dan 2 sangat baik, kategori 1 masih memiliki kinerja moderat.
 - **Kelebihan:**
   - Mengatasi *overfitting* dengan *bagging*.
@@ -320,7 +296,7 @@ Data preparation adalah tahap penting sebelum pemodelan karena memastikan data b
 
 ### **Pemilihan Model Terbaik**
 - Model **Random Forest** dipilih sebagai model terbaik:
-  - Akurasi tertinggi (73%) dibandingkan KNN dan SVC.
+  - Akurasi tertinggi (71%) dibandingkan KNN dan SVC.
   - Kinerja yang lebih konsisten pada kategori `Risk Level` 0, 1, dan 2.
   - Dapat menangani ketidakseimbangan kelas dengan baik.
 
@@ -337,11 +313,7 @@ Data preparation adalah tahap penting sebelum pemodelan karena memastikan data b
 - Random Forest memberikan hasil terbaik dalam hal akurasi dan konsistensi antar kategori risiko.
 - Proses improvement membantu setiap model meningkatkan kinerjanya dengan meminimalkan *bias* atau *variance*.
 
-
-
-
 ## Evaluation
-
 
 ### **Metrik Evaluasi yang Digunakan**
 1. **Confusion Matrix**  
@@ -375,6 +347,15 @@ Data preparation adalah tahap penting sebelum pemodelan karena memastikan data b
      \text{Accuracy} = \frac{\text{True Positives} + \text{True Negatives}}{\text{Total Samples}}
      \]
    - Mengukur persentase prediksi yang benar dari total prediksi. Namun, metrik ini kurang efektif untuk dataset yang tidak seimbang.
+  
+6. **ROC Curve (Receiver Operating Characteristic)**
+
+- Grafik ROC menunjukkan hubungan antara True Positive Rate (Sensitivity/Recall) dan False Positive Rate (1 - Specificity) pada berbagai threshold keputusan.
+- Kurva ini membantu mengevaluasi kemampuan model untuk membedakan antara kelas positif dan negatif secara keseluruhan.
+
+7. **AUC (Area Under the Curve)**
+- AUC adalah nilai numerik yang menunjukkan luas di bawah kurva ROC. Semakin tinggi nilai AUC, semakin baik model dalam memisahkan kelas.
+- Rentang nilai AUC adalah antara 0.5 (tidak ada kemampuan diskriminasi, setara dengan tebak-tebakan) hingga 1.0 (diskriminasi sempurna).
 
 ---
 
@@ -382,14 +363,17 @@ Data preparation adalah tahap penting sebelum pemodelan karena memastikan data b
 1. **K-Nearest Neighbors (KNN)**
    - Akurasi meningkat dari **55% (K=1)** menjadi **66% (K=16)** setelah hyperparameter tuning.
    - Precision dan Recall pada kategori `Risk Level` 0 dan 2 cukup baik setelah improvement, tetapi kategori 1 masih memiliki kinerja rendah karena data yang tidak seimbang.
+   - Model KNN memiliki performa yang cukup baik dengan AUC sebesar 0.77. Artinya, pada 77% kasus, model ini dapat membedakan antara kelas positif dan negatif dengan benar.
 
 2. **Support Vector Classifier (SVC)**
    - Akurasi: **67%**.
-   - Precision, Recall, dan F1-Score pada kategori `Risk Level` 0 dan 2 memadai, tetapi kategori 1 tetap rendah, menunjukkan kelemahan dalam menangani kelas minoritas meskipun telah menggunakan *class_weight*.
+   - Precision, Recall, dan F1-Score pada kategori `Risk Level` 0 dan 2 memadai, tetapi kategori 1 tetap rendah, menunjukkan kelemahan dalam menangani kelas minoritas meskipun telah menggunakan *class_weight
+   - Model SVC memiliki AUC yang sama dengan KNN, yaitu 0.77. Ini menunjukkan bahwa SVC dan KNN memiliki kemampuan diskriminasi yang serupa dalam memisahkan kelas.
 
 3. **Random Forest**
    - Akurasi tertinggi: **73%**.
    - Precision, Recall, dan F1-Score menunjukkan kinerja konsisten pada semua kategori, dengan perbaikan signifikan pada kategori `Risk Level` 1 dibandingkan dengan model lain.
+   - Model Random Forest memiliki AUC tertinggi (0.81), menunjukkan performa terbaik dibandingkan dengan KNN dan SVC. Random Forest lebih andal dalam membedakan antara kelas positif dan negatif, menjadikannya model yang lebih cocok untuk masalah ini.
 
 ---
 
@@ -407,9 +391,10 @@ Data preparation adalah tahap penting sebelum pemodelan karena memastikan data b
 ---
 
 ### **Kesimpulan Hasil Evaluasi**
-- **Random Forest** adalah model terbaik dengan akurasi tertinggi (**73%**) dan kinerja metrik evaluasi yang paling seimbang untuk semua kategori risiko.
+- **Random Forest** adalah model terbaik dengan akurasi tertinggi (**71%**) dan kinerja metrik evaluasi yang paling seimbang untuk semua kategori risiko.
 - Penggunaan Precision, Recall, dan F1-Score memberikan wawasan yang lebih baik dalam menilai kemampuan model dalam memprediksi risiko kehamilan yang berbahaya.
 - Metrik ini membantu memilih model yang tidak hanya akurat tetapi juga andal dalam menangani kelas minoritas (`Risk Level` 1).
+- Random Forest lebih andal dalam membedakan antara kelas positif dan negatif pada metrik evaluasi ROC AUC, menjadikannya model yang lebih cocok untuk masalah ini.
 
 
 **---Ini adalah bagian akhir laporan---**
