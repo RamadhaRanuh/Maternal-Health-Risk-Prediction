@@ -321,31 +321,15 @@ Data preparation adalah tahap penting sebelum pemodelan karena memastikan data b
    - Matriks ini digunakan untuk menghitung metrik lain seperti Precision, Recall, dan F1-Score.
 
 2. **Precision**  
-   - Formula:
-     \[
-     \text{Precision} = \frac{\text{True Positives}}{\text{True Positives} + \text{False Positives}}
-     \]
    - Precision mengukur proporsi prediksi positif yang benar-benar positif. Cocok untuk kasus di mana kesalahan False Positive harus diminimalkan.
 
 3. **Recall (Sensitivity)**  
-   - Formula:
-     \[
-     \text{Recall} = \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}}
-     \]
    - Recall mengukur kemampuan model untuk menangkap semua data positif yang sebenarnya. Cocok untuk kasus di mana kesalahan False Negative perlu diminimalkan.
 
 4. **F1-Score**  
-   - Formula:
-     \[
-     F1\text{-Score} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
-     \]
    - Kombinasi Precision dan Recall yang seimbang. Berguna jika ada trade-off antara False Positives dan False Negatives.
 
 5. **Accuracy**  
-   - Formula:
-     \[
-     \text{Accuracy} = \frac{\text{True Positives} + \text{True Negatives}}{\text{Total Samples}}
-     \]
    - Mengukur persentase prediksi yang benar dari total prediksi. Namun, metrik ini kurang efektif untuk dataset yang tidak seimbang.
   
 6. **ROC Curve (Receiver Operating Characteristic)**
